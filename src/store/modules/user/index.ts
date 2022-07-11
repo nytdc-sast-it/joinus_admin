@@ -9,7 +9,6 @@ import { setToken, clearToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
 import { useRouter } from 'vue-router';
 import { UserState } from './types';
-import useAppStore from '../app';
 
 const router = useRouter();
 
@@ -48,7 +47,7 @@ const useUserStore = defineStore('user', {
         .catch(() => {
           clearToken();
           removeRouteListener();
-          router.push('/login');
+          router.push({ name: 'login' });
         });
     },
 
@@ -62,11 +61,9 @@ const useUserStore = defineStore('user', {
         });
     },
     logoutCallBack() {
-      const appStore = useAppStore();
       this.resetInfo();
       clearToken();
       removeRouteListener();
-      appStore.clearServerMenu();
     },
     // Logout
     async logout() {

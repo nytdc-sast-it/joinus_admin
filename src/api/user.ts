@@ -21,7 +21,3 @@ export function logout() {
 export function getUserInfo() {
   return axios.get<UserState>('/api/auth/current');
 }
-
-export function getMenuList() {
-  return axios.post<RouteRecordNormalized[]>('/api/user/menu');
-}

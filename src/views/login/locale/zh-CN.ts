@@ -8,4 +8,5 @@ export default {
   'login.form.password.placeholder': '密码',
   'login.form.rememberPassword': '记住密码',
   'login.form.login': '登录',
+  'auth.logout': '退出登录',
 };

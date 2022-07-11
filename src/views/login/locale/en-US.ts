@@ -8,4 +8,5 @@ export default {
   'login.form.password.placeholder': 'Password',
   'login.form.rememberPassword': 'Remember password',
   'login.form.login': 'login',
+  'auth.logout': 'Logout',
 };

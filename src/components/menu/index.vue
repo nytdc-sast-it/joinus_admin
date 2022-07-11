@@ -43,9 +43,7 @@
           return;
         }
         // Trigger router change
-        router.push({
-          name: item.name,
-        });
+        router.push({ name: item.name?.toString() });
       };
       const findMenuOpenKeys = (name: string) => {
         const result: string[] = [];
@@ -153,6 +151,7 @@
       display: flex;
       align-items: center;
     }
+
     .arco-icon {
       &:not(.arco-icon-down) {
         font-size: 18px;

@@ -26,7 +26,7 @@
   const isLoggedIn = ref(userStore.id);
   const router = useRouter();
   if (isLoggedIn.value) {
-    router.push(DEFAULT_ROUTE.fullPath);
+    router.push({ name: 'Application' });
   }
 </script>
 

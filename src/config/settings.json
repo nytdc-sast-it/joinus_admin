@@ -1,6 +1,5 @@
 {
   "theme": "light",
-  "colorWeak": false,
   "navbar": true,
   "menu": true,
   "hideMenu": false,
@@ -11,6 +10,5 @@
   "globalSettings": false,
   "device": "desktop",
   "tabBar": false,
-  "menuFromServer": false,
-  "serverMenu": []
+  "menuFromServer": false
 }

@@ -13,7 +13,7 @@
   const router = useRouter();
   const back = () => {
     // warning： Go to the node that has the permission
-    router.push({ name: 'Workplace' });
+    router.push({ name: 'Application' });
   };
 </script>
 
@@ -23,8 +23,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -95px;
     margin-top: -121px;
+    margin-left: -95px;
     text-align: center;
   }
 </style>
