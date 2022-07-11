@@ -13,11 +13,11 @@ const DASHBOARD: AppRouteRecordRaw = {
   },
   children: [
     {
-      path: 'workplace',
-      name: 'Workplace',
-      component: () => import('@/views/dashboard/workplace/index.vue'),
+      path: 'application',
+      name: 'Application',
+      component: () => import('@/views/dashboard/application/index.vue'),
       meta: {
-        locale: 'menu.dashboard.workplace',
+        locale: 'menu.dashboard.application',
         requiresAuth: true,
         roles: ['*'],
       },
