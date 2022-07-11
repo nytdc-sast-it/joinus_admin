@@ -1,5 +1,5 @@
 export default {
-  'menu.list.searchTable': 'Search Table',
+  'menu.dashboard.application': 'Application Enquiry',
   'searchTable.form.number': 'Set Number',
   'searchTable.form.number.placeholder': 'Please enter Set Number',
   'searchTable.form.name': 'Set Name',

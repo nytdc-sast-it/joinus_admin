@@ -7,8 +7,11 @@ import {
 } from '@/api/user';
 import { setToken, clearToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
+import { useRouter } from 'vue-router';
 import { UserState } from './types';
 import useAppStore from '../app';
+
+const router = useRouter();
 
 const useUserStore = defineStore('user', {
   state: (): UserState => ({
@@ -38,20 +41,25 @@ const useUserStore = defineStore('user', {
 
     // Get user's information
     async info() {
-      const res = await getUserInfo();
-
-      this.setInfo(res.data);
+      await getUserInfo()
+        .then((res) => {
+          this.setInfo(res.data);
+        })
+        .catch(() => {
+          clearToken();
+          removeRouteListener();
+          router.push('/login');
+        });
     },
 
     // Login
     async login(loginForm: LoginData) {
-      try {
-        const res = await userLogin(loginForm);
-        setToken(res.data.token);
-      } catch (err) {
-        clearToken();
-        throw err;
-      }
+      await userLogin(loginForm)
+        .then((res) => setToken(res.data.token))
+        .catch((err) => {
+          clearToken();
+          throw err;
+        });
     },
     logoutCallBack() {
       const appStore = useAppStore();

@@ -1,12 +1,5 @@
 <template>
   <div class="container">
-    <div class="logo">
-      <img
-        alt="logo"
-        src="//p3-armor.byteimg.com/tos-cn-i-49unhts6dw/dfdba5317c0c20ce20e64fac803d52bc.svg~tplv-49unhts6dw-image.image"
-      />
-      <div class="logo-text">Arco Design Pro</div>
-    </div>
     <LoginBanner />
     <div class="content">
       <div class="content-inner">
@@ -21,8 +14,20 @@
 
 <script lang="ts" setup>
   import Footer from '@/components/footer/index.vue';
+  import { DEFAULT_ROUTE } from '@/router/routes';
+  import { useUserStore } from '@/store';
+  import { ref } from 'vue';
+  import { useRouter } from 'vue-router';
   import LoginBanner from './components/banner.vue';
   import LoginForm from './components/login-form.vue';
+
+  // Check if the user is logged in
+  const userStore = useUserStore();
+  const isLoggedIn = ref(userStore.id);
+  const router = useRouter();
+  if (isLoggedIn.value) {
+    router.push(DEFAULT_ROUTE.fullPath);
+  }
 </script>
 
 <style lang="less" scoped>

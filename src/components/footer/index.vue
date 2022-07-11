@@ -1,5 +1,5 @@
 <template>
-  <a-layout-footer class="footer">Arco Pro</a-layout-footer>
+  <a-layout-footer class="footer">&copy; 2013-2022 NYTDC-SAST</a-layout-footer>
 </template>
 
 <script lang="ts" setup></script>
