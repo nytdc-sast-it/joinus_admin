@@ -14,7 +14,6 @@
 
 <script lang="ts" setup>
   import Footer from '@/components/footer/index.vue';
-  import { DEFAULT_ROUTE } from '@/router/routes';
   import { useUserStore } from '@/store';
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';

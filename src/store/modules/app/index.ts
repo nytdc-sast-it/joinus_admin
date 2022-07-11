@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import type { RouteRecordNormalized } from 'vue-router';
 import defaultSettings from '@/config/settings.json';
 import { AppState } from './types';
 

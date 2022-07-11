@@ -23,7 +23,6 @@
   import type { RouteLocationNormalized } from 'vue-router';
   import { listenerRouteChange } from '@/utils/route-listener';
   import { useAppStore, useTabBarStore } from '@/store';
-  import tabItem from './tab-item.vue';
 
   const appStore = useAppStore();
   const tabBarStore = useTabBarStore();
@@ -56,26 +55,30 @@
   .tab-bar-container {
     position: relative;
     background-color: var(--color-bg-2);
+
     .tab-bar-box {
       display: flex;
       padding: 0 0 0 20px;
       background-color: var(--color-bg-2);
       border-bottom: 1px solid var(--color-border);
+
       .tab-bar-scroll {
-        height: 32px;
         flex: 1;
+        height: 32px;
         overflow: hidden;
+
         .tags-wrap {
-          padding: 4px 0;
           height: 48px;
-          white-space: nowrap;
+          padding: 4px 0;
           overflow-x: auto;
+          white-space: nowrap;
 
           :deep(.arco-tag) {
             display: inline-flex;
             align-items: center;
             margin-right: 6px;
             cursor: pointer;
+
             &:first-child {
               .arco-tag-close-btn {
                 display: none;
