@@ -98,12 +98,14 @@
         await userStore.login(values as LoginData);
         const { redirect, ...othersQuery } = router.currentRoute.value.query;
         router.push({
-          name: (redirect as string) || 'Workplace',
+          name: (redirect as string) || 'Application',
           query: {
             ...othersQuery,
           },
         });
-        Message.success(t('login.form.login.success'));
+        Message.success(
+          `${t('login.form.login.success')}，${userStore.username}`
+        );
         const { rememberPassword } = loginConfig.value;
         const { username, password } = values;
         // 实际生产环境需要进行加密存储。
