@@ -13,6 +13,7 @@ export default {
   'application.columns.student_id': 'Student ID',
   'application.columns.phone': 'Phone Number',
   'application.columns.qq': 'QQ',
+  'application.columns.major': 'Major',
   'application.columns.counselor': 'Counselor',
   'application.columns.club': 'Club',
   'application.columns.choice1': 'Choice 1',

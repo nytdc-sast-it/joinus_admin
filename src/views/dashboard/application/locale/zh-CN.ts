@@ -9,10 +9,11 @@ export default {
   'application.operation.download': '下载',
   // columns
   'application.columns.id': 'ID',
-  'application.columns.name': '名称',
+  'application.columns.name': '姓名',
   'application.columns.student_id': '学号',
   'application.columns.phone': '手机号',
   'application.columns.qq': 'QQ',
+  'application.columns.major': '专业',
   'application.columns.counselor': '辅导员',
   'application.columns.club': '社团',
   'application.columns.choice1': '第一意向',

@@ -98,6 +98,10 @@
             data-index="qq"
           />
           <a-table-column
+            :title="$t('application.columns.major')"
+            data-index="major"
+          />
+          <a-table-column
             :title="$t('application.columns.counselor')"
             data-index="counselor"
           />

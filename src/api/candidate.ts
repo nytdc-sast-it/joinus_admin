@@ -7,6 +7,7 @@ export interface CandidateRecord {
   studentId: string;
   phone: string;
   qq: string;
+  major: string;
   counselor: string;
   club: string;
   choice1: string;
