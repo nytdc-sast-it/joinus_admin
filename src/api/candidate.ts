@@ -17,7 +17,7 @@ export interface CandidateRecord {
 
 export interface CandidateQuery {
   name: string;
-  club: string;
+  club: string | undefined;
 }
 
 export interface CandidateParams extends Partial<CandidateQuery> {
@@ -36,5 +36,15 @@ export function queryCandidateList(params: CandidateParams) {
     paramsSerializer: (obj) => {
       return qs.stringify(obj);
     },
+  });
+}
+
+export function exportCandidateList(params: CandidateQuery) {
+  return axios.get('/api/candidate/export', {
+    params,
+    paramsSerializer: (obj) => {
+      return qs.stringify(obj);
+    },
+    responseType: 'blob',
   });
 }

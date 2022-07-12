@@ -35,12 +35,26 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
 // add response interceptors
 axios.interceptors.response.use(
-  (response: AxiosResponse<HttpResponse>) => {
+  (response: AxiosResponse<HttpResponse | Blob>) => {
     const res = response.data;
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res instanceof Blob) {
+      // download file
+      const url = window.URL.createObjectURL(res);
+      const link = document.createElement('a');
+      link.style.display = 'none';
+      link.href = url;
+      link.setAttribute(
+        'download',
+        response.headers['content-disposition'].split(';')[1].split('=')[1]
+      );
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } else if (res.code !== 20000) {
       Message.error({
         content: res.msg || 'Error',
         duration: 5 * 1000,

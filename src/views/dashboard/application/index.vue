@@ -60,7 +60,7 @@
           <a-space />
         </a-col>
         <a-col :span="8" style="text-align: right">
-          <a-button>
+          <a-button @click="download">
             <template #icon>
               <icon-download />
             </template>
@@ -134,8 +134,10 @@
   import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface';
   import {
     CandidateRecord,
+    CandidateQuery,
     CandidateParams,
     queryCandidateList,
+    exportCandidateList,
   } from '@/api/candidate';
   import { getClubList } from '@/api/club';
   import { useUserStore } from '@/store';
@@ -175,6 +177,12 @@
         ]
       : [];
   });
+  const download = () => {
+    const params: CandidateQuery = {
+      ...formModel.value,
+    };
+    exportCandidateList(params);
+  };
   const fetchData = async (
     params: CandidateParams = { current: 1, pageSize: 20 }
   ) => {
