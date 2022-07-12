@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css';
 
@@ -22,12 +22,12 @@ const router = createRouter({
         requiresAuth: false,
       },
     },
-    ...appRoutes,
     {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: () => import('@/views/not-found/index.vue'),
     },
+    ...(appRoutes as RouteRecordRaw[]),
   ],
   scrollBehavior() {
     return { top: 0 };
