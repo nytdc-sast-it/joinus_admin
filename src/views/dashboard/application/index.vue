@@ -11,69 +11,25 @@
             label-align="left"
           >
             <a-row :gutter="16">
+              <!-- 姓名 -->
               <a-col :span="8">
-                <a-form-item
-                  field="number"
-                  :label="$t('searchTable.form.number')"
-                >
-                  <a-input
-                    v-model="formModel.number"
-                    :placeholder="$t('searchTable.form.number.placeholder')"
-                  />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item field="name" :label="$t('searchTable.form.name')">
+                <a-form-item field="name" :label="$t('application.form.name')">
                   <a-input
                     v-model="formModel.name"
-                    :placeholder="$t('searchTable.form.name.placeholder')"
+                    :placeholder="$t('application.form.name.placeholder')"
                   />
                 </a-form-item>
               </a-col>
+              <!-- 社团 -->
               <a-col :span="8">
                 <a-form-item
                   field="contentType"
-                  :label="$t('searchTable.form.contentType')"
+                  :label="$t('application.form.club')"
                 >
                   <a-select
-                    v-model="formModel.contentType"
-                    :options="contentTypeOptions"
-                    :placeholder="$t('searchTable.form.selectDefault')"
-                  />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item
-                  field="filterType"
-                  :label="$t('searchTable.form.filterType')"
-                >
-                  <a-select
-                    v-model="formModel.filterType"
-                    :options="filterTypeOptions"
-                    :placeholder="$t('searchTable.form.selectDefault')"
-                  />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item
-                  field="createdTime"
-                  :label="$t('searchTable.form.createdTime')"
-                >
-                  <a-range-picker
-                    v-model="formModel.createdTime"
-                    style="width: 100%"
-                  />
-                </a-form-item>
-              </a-col>
-              <a-col :span="8">
-                <a-form-item
-                  field="status"
-                  :label="$t('searchTable.form.status')"
-                >
-                  <a-select
-                    v-model="formModel.status"
-                    :options="statusOptions"
-                    :placeholder="$t('searchTable.form.selectDefault')"
+                    v-model="formModel.club"
+                    :options="clubOptions"
+                    :placeholder="$t('application.form.selectDefault')"
                   />
                 </a-form-item>
               </a-col>
@@ -87,13 +43,13 @@
               <template #icon>
                 <icon-search />
               </template>
-              {{ $t('searchTable.form.search') }}
+              {{ $t('application.form.search') }}
             </a-button>
             <a-button @click="reset">
               <template #icon>
                 <icon-refresh />
               </template>
-              {{ $t('searchTable.form.reset') }}
+              {{ $t('application.form.reset') }}
             </a-button>
           </a-space>
         </a-col>
@@ -101,28 +57,14 @@
       <a-divider style="margin-top: 0" />
       <a-row style="margin-bottom: 16px">
         <a-col :span="16">
-          <a-space>
-            <a-button type="primary">
-              <template #icon>
-                <icon-plus />
-              </template>
-              {{ $t('searchTable.operation.create') }}
-            </a-button>
-            <a-upload action="/">
-              <template #upload-button>
-                <a-button>
-                  {{ $t('searchTable.operation.import') }}
-                </a-button>
-              </template>
-            </a-upload>
-          </a-space>
+          <a-space />
         </a-col>
         <a-col :span="8" style="text-align: right">
           <a-button>
             <template #icon>
               <icon-download />
             </template>
-            {{ $t('searchTable.operation.download') }}
+            {{ $t('application.operation.download') }}
           </a-button>
         </a-col>
       </a-row>
@@ -136,85 +78,49 @@
       >
         <template #columns>
           <a-table-column
-            :title="$t('searchTable.columns.number')"
-            data-index="number"
+            :title="$t('application.columns.id')"
+            data-index="id"
           />
           <a-table-column
-            :title="$t('searchTable.columns.name')"
+            :title="$t('application.columns.name')"
             data-index="name"
           />
           <a-table-column
-            :title="$t('searchTable.columns.contentType')"
-            data-index="contentType"
-          >
-            <template #cell="{ record }">
-              <a-space>
-                <a-avatar
-                  v-if="record.contentType === 'img'"
-                  :size="16"
-                  shape="square"
-                >
-                  <img
-                    alt="avatar"
-                    src="//p3-armor.byteimg.com/tos-cn-i-49unhts6dw/581b17753093199839f2e327e726b157.svg~tplv-49unhts6dw-image.image"
-                  />
-                </a-avatar>
-                <a-avatar
-                  v-else-if="record.contentType === 'horizontalVideo'"
-                  :size="16"
-                  shape="square"
-                >
-                  <img
-                    alt="avatar"
-                    src="//p3-armor.byteimg.com/tos-cn-i-49unhts6dw/77721e365eb2ab786c889682cbc721c1.svg~tplv-49unhts6dw-image.image"
-                  />
-                </a-avatar>
-                <a-avatar v-else :size="16" shape="square">
-                  <img
-                    alt="avatar"
-                    src="//p3-armor.byteimg.com/tos-cn-i-49unhts6dw/ea8b09190046da0ea7e070d83c5d1731.svg~tplv-49unhts6dw-image.image"
-                  />
-                </a-avatar>
-                {{ $t(`searchTable.form.contentType.${record.contentType}`) }}
-              </a-space>
-            </template>
-          </a-table-column>
-          <a-table-column
-            :title="$t('searchTable.columns.filterType')"
-            data-index="filterType"
-          >
-            <template #cell="{ record }">
-              {{ $t(`searchTable.form.filterType.${record.filterType}`) }}
-            </template>
-          </a-table-column>
-          <a-table-column
-            :title="$t('searchTable.columns.count')"
-            data-index="count"
+            :title="$t('application.columns.student_id')"
+            data-index="studentId"
           />
           <a-table-column
-            :title="$t('searchTable.columns.createdTime')"
+            :title="$t('application.columns.phone')"
+            data-index="phone"
+          />
+          <a-table-column
+            :title="$t('application.columns.qq')"
+            data-index="qq"
+          />
+          <a-table-column
+            :title="$t('application.columns.counselor')"
+            data-index="counselor"
+          />
+          <a-table-column
+            :title="$t('application.columns.club')"
+            data-index="club"
+          />
+          <a-table-column
+            :title="$t('application.columns.choice1')"
+            data-index="choice1"
+          />
+          <a-table-column
+            :title="$t('application.columns.choice2')"
+            data-index="choice2"
+          />
+          <a-table-column
+            :title="$t('application.columns.reason')"
+            data-index="reason"
+          />
+          <a-table-column
+            :title="$t('application.columns.createdTime')"
             data-index="createdTime"
           />
-          <a-table-column
-            :title="$t('searchTable.columns.status')"
-            data-index="status"
-          >
-            <template #cell="{ record }">
-              <span v-if="record.status === 'offline'" class="circle"></span>
-              <span v-else class="circle pass"></span>
-              {{ $t(`searchTable.form.status.${record.status}`) }}
-            </template>
-          </a-table-column>
-          <a-table-column
-            :title="$t('searchTable.columns.operations')"
-            data-index="operations"
-          >
-            <template #cell>
-              <a-button v-permission="['admin']" type="text" size="small">
-                {{ $t('searchTable.columns.operations.view') }}
-              </a-button>
-            </template>
-          </a-table-column>
         </template>
       </a-table>
     </a-card>
@@ -225,23 +131,23 @@
   import { computed, ref, reactive } from 'vue';
   import { useI18n } from 'vue-i18n';
   import useLoading from '@/hooks/loading';
-  import { queryPolicyList, PolicyRecord, PolicyParams } from '@/api/list';
   import { Pagination } from '@/types/global';
   import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface';
+  import {
+    CandidateRecord,
+    CandidateParams,
+    queryCandidateList,
+  } from '@/api/candidate';
 
   const generateFormModel = () => {
     return {
-      number: '',
       name: '',
-      contentType: '',
-      filterType: '',
-      createdTime: [],
-      status: '',
+      club: undefined,
     };
   };
   const { loading, setLoading } = useLoading(true);
   const { t } = useI18n();
-  const renderData = ref<PolicyRecord[]>([]);
+  const renderData = ref<CandidateRecord[]>([]);
   const formModel = ref(generateFormModel());
   const basePagination: Pagination = {
     current: 1,
@@ -250,46 +156,26 @@
   const pagination = reactive({
     ...basePagination,
   });
-  const contentTypeOptions = computed<SelectOptionData[]>(() => [
-    {
-      label: t('searchTable.form.contentType.img'),
-      value: 'img',
-    },
-    {
-      label: t('searchTable.form.contentType.horizontalVideo'),
-      value: 'horizontalVideo',
-    },
-    {
-      label: t('searchTable.form.contentType.verticalVideo'),
-      value: 'verticalVideo',
-    },
-  ]);
-  const filterTypeOptions = computed<SelectOptionData[]>(() => [
-    {
-      label: t('searchTable.form.filterType.artificial'),
-      value: 'artificial',
-    },
-    {
-      label: t('searchTable.form.filterType.rules'),
-      value: 'rules',
-    },
-  ]);
-  const statusOptions = computed<SelectOptionData[]>(() => [
-    {
-      label: t('searchTable.form.status.online'),
-      value: 'online',
-    },
-    {
-      label: t('searchTable.form.status.offline'),
-      value: 'offline',
-    },
+  const clubOptions = computed<SelectOptionData[]>(() => [
+    // {
+    //   label: t('application.form.contentType.img'),
+    //   value: 'img',
+    // },
+    // {
+    //   label: t('application.form.contentType.horizontalVideo'),
+    //   value: 'horizontalVideo',
+    // },
+    // {
+    //   label: t('application.form.contentType.verticalVideo'),
+    //   value: 'verticalVideo',
+    // },
   ]);
   const fetchData = async (
-    params: PolicyParams = { current: 1, pageSize: 20 }
+    params: CandidateParams = { current: 1, pageSize: 20 }
   ) => {
     setLoading(true);
     try {
-      const { data } = await queryPolicyList(params);
+      const { data } = await queryCandidateList(params);
       renderData.value = data.list;
       pagination.current = params.current;
       pagination.total = data.total;
@@ -304,7 +190,7 @@
     fetchData({
       ...basePagination,
       ...formModel.value,
-    } as unknown as PolicyParams);
+    } as unknown as CandidateParams);
   };
   const onPageChange = (current: number) => {
     fetchData({ ...basePagination, current });
