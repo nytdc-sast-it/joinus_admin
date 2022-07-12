@@ -1,3 +1,5 @@
+import { ClubDTO } from '@/api/club';
+
 export type RoleType = '' | '*' | 'admin' | 'user';
 export interface UserState {
   id?: number;
@@ -5,4 +7,5 @@ export interface UserState {
   avatar?: string;
   role: RoleType;
   isAdmin: boolean;
+  club: ClubDTO | undefined;
 }

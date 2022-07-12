@@ -52,6 +52,7 @@ specifiers:
   vite-plugin-style-import: 1.4.1
   vite-svg-loader: ^3.1.0
   vue: ^3.2.31
+  vue-async-computed: 3.9.0
   vue-i18n: ^9.2.0-beta.17
   vue-router: ^4.0.14
   vue-tsc: ^0.34.15
@@ -68,6 +69,7 @@ dependencies:
   pinia: 2.0.14_j6bzmzd4ujpabbp5objtwxyjp4
   query-string: 7.1.1
   vue: 3.2.37
+  vue-async-computed: 3.9.0_vue@3.2.37
   vue-i18n: 9.2.0-beta.36_vue@3.2.37
   vue-router: 4.1.1_vue@3.2.37
 
@@ -7967,6 +7969,14 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /vue-async-computed/3.9.0_vue@3.2.37:
+    resolution: {integrity: sha512-ac6m/9zxHHNGGKNOU1en8qNk+fAmEbJLuWL7qyQTFuH3vjv3V4urv//QHcVzCobROM6btnaDG2b+XYMncF/ETA==}
+    peerDependencies:
+      vue: ~2
+    dependencies:
+      vue: 3.2.37
+    dev: false
 
   /vue-demi/0.13.2_vue@3.2.37:
     resolution: {integrity: sha512-41ukrclEbMddAyP7PvxMSYqnOSzPV6r7GNnyTSKSCNTaz19GehxmTiXyP9kwHSUv2+Dr6hHqiUiF7L1VAw2KdQ==}

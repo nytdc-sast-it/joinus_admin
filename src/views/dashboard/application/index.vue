@@ -128,8 +128,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { computed, ref, reactive } from 'vue';
-  import { useI18n } from 'vue-i18n';
+  import { ref, reactive } from 'vue';
   import useLoading from '@/hooks/loading';
   import { Pagination } from '@/types/global';
   import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface';
@@ -138,6 +137,9 @@
     CandidateParams,
     queryCandidateList,
   } from '@/api/candidate';
+  import { getClubList } from '@/api/club';
+  import { useUserStore } from '@/store';
+  import { asyncComputed } from '@vueuse/core';
 
   const generateFormModel = () => {
     return {
@@ -146,9 +148,9 @@
     };
   };
   const { loading, setLoading } = useLoading(true);
-  const { t } = useI18n();
   const renderData = ref<CandidateRecord[]>([]);
   const formModel = ref(generateFormModel());
+  const userStore = useUserStore();
   const basePagination: Pagination = {
     current: 1,
     pageSize: 20,
@@ -156,20 +158,23 @@
   const pagination = reactive({
     ...basePagination,
   });
-  const clubOptions = computed<SelectOptionData[]>(() => [
-    // {
-    //   label: t('application.form.contentType.img'),
-    //   value: 'img',
-    // },
-    // {
-    //   label: t('application.form.contentType.horizontalVideo'),
-    //   value: 'horizontalVideo',
-    // },
-    // {
-    //   label: t('application.form.contentType.verticalVideo'),
-    //   value: 'verticalVideo',
-    // },
-  ]);
+  const clubOptions = asyncComputed<SelectOptionData[]>(async () => {
+    if (userStore.isAdmin) {
+      const res = await getClubList();
+      return res.data.list.map((item) => ({
+        label: item.name,
+        value: item.id,
+      }));
+    }
+    return userStore.club
+      ? [
+          {
+            label: userStore.club.name,
+            value: userStore.club.id,
+          },
+        ]
+      : [];
+  });
   const fetchData = async (
     params: CandidateParams = { current: 1, pageSize: 20 }
   ) => {
