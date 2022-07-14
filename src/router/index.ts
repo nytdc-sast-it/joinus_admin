@@ -22,12 +22,12 @@ const router = createRouter({
         requiresAuth: false,
       },
     },
+    ...(appRoutes as RouteRecordRaw[]),
     {
       path: '/:pathMatch(.*)*',
       name: 'notFound',
       component: () => import('@/views/not-found/index.vue'),
     },
-    ...(appRoutes as RouteRecordRaw[]),
   ],
   scrollBehavior() {
     return { top: 0 };
