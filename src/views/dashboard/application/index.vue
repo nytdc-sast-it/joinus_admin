@@ -165,7 +165,7 @@
     ...basePagination,
   });
   const clubOptions = asyncComputed<SelectOptionData[]>(async () => {
-    if (userStore.isAdmin) {
+    if (userStore.admin) {
       const res = await getClubList();
       return res.data.list.map((item) => ({
         label: item.name,

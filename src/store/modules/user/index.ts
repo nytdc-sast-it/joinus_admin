@@ -13,7 +13,7 @@ const useUserStore = defineStore('user', {
     username: undefined,
     avatar: undefined,
     role: '',
-    isAdmin: false,
+    admin: false,
     club: undefined,
   }),
 

@@ -6,6 +6,6 @@ export interface UserState {
   username?: string;
   avatar?: string;
   role: RoleType;
-  isAdmin: boolean;
+  admin: boolean;
   club: ClubDTO | undefined;
 }
