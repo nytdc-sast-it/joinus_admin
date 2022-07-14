@@ -14,10 +14,6 @@ export function login(data: LoginData) {
   return axios.post<LoginRes>('/api/auth/login', data);
 }
 
-export function logout() {
-  return axios.post<LoginRes>('/api/auth/logout');
-}
-
 export function getUserInfo() {
   return axios.get<UserState>('/api/auth/current');
 }

@@ -1,10 +1,5 @@
 import { defineStore } from 'pinia';
-import {
-  login as userLogin,
-  logout as userLogout,
-  getUserInfo,
-  LoginData,
-} from '@/api/user';
+import { login as userLogin, getUserInfo, LoginData } from '@/api/user';
 import { setToken, clearToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
 import { useRouter } from 'vue-router';
@@ -71,11 +66,7 @@ const useUserStore = defineStore('user', {
     },
     // Logout
     async logout() {
-      try {
-        await userLogout();
-      } finally {
-        this.logoutCallBack();
-      }
+      this.logoutCallBack();
     },
   },
 });
