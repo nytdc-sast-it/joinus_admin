@@ -6,4 +6,6 @@ export default {
   'club.columns.name': 'Name',
   'club.columns.operations': 'Operations',
   'club.columns.operations.remove': 'Remove',
+  'club.operation.remove.tip': 'Are you sure you want to remove?',
+  'club.operation.remove.success': 'Successfully removed',
 };

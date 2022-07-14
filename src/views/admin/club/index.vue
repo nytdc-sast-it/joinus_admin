@@ -27,10 +27,16 @@
             :title="$t('club.columns.operations')"
             data-index="operations"
           >
-            <template #cell>
-              <a-button v-permission="['admin']" type="text" size="small">
-                {{ $t('club.columns.operations.remove') }}
-              </a-button>
+            <template #cell="scope">
+              <a-popconfirm
+                :content="$t('club.operation.remove.tip')"
+                :ok-loading="removing"
+                @ok="remove((scope.record as ClubDTO).id)"
+              >
+                <a-button v-permission="['admin']" type="text" size="small">{{
+                  $t('club.columns.operations.remove')
+                }}</a-button>
+              </a-popconfirm>
             </template>
           </a-table-column>
         </template>
@@ -42,10 +48,20 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
   import useLoading from '@/hooks/loading';
-  import { ClubDTO, getClubList } from '@/api/club';
+  import { ClubDTO, deleteClub, getClubList } from '@/api/club';
+  import { Message } from '@arco-design/web-vue';
 
   const { loading, setLoading } = useLoading(true);
+  const removing = ref(false);
   const renderData = ref<ClubDTO[]>([]);
+  const remove = async (id: number) => {
+    try {
+      await deleteClub(id);
+      Message.success("$t('club.operation.remove.success')");
+    } finally {
+      await fetchData();
+    }
+  };
   const fetchData = async () => {
     setLoading(true);
     try {

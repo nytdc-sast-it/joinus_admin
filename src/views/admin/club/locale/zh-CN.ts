@@ -6,4 +6,6 @@ export default {
   'club.columns.name': '名称',
   'club.columns.operations': '操作',
   'club.columns.operations.remove': '删除',
+  'club.operation.remove.tip': '您确定要删除吗？',
+  'club.operation.remove.success': '删除成功',
 };
