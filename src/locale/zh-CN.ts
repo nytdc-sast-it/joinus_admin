@@ -2,10 +2,13 @@ import localeLogin from '@/views/login/locale/zh-CN';
 
 import localeApplication from '@/views/dashboard/application/locale/zh-CN';
 
+import localeClub from '@/views/admin/club/locale/zh-CN';
+
 import localeSettings from './zh-CN/settings';
 
 export default {
   'menu.dashboard': '仪表盘',
+  'menu.admin': '管理',
   'menu.arcoWebsite': 'Arco Design',
   'menu.faq': '常见问题',
   'navbar.docs': '文档中心',
@@ -13,4 +16,5 @@ export default {
   ...localeSettings,
   ...localeLogin,
   ...localeApplication,
+  ...localeClub,
 };
