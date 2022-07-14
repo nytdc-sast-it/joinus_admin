@@ -96,6 +96,7 @@
           >
             <img alt="avatar" :src="avatar" />
           </a-avatar>
+          {{ username }}
           <template #content>
             <a-doption>
               <a-space @click="handleLogout">
@@ -128,6 +129,9 @@
   const locales = [...LOCALE_OPTIONS];
   const avatar = computed(() => {
     return userStore.avatar;
+  });
+  const username = computed(() => {
+    return userStore.username;
   });
   const theme = computed(() => {
     return appStore.theme;
