@@ -30,6 +30,7 @@ declare module '@vue/runtime-core' {
     ALayoutSider: typeof import('@arco-design/web-vue')['LayoutSider'];
     AMenu: typeof import('@arco-design/web-vue')['Menu'];
     AMenuItem: typeof import('@arco-design/web-vue')['MenuItem'];
+    APopconfirm: typeof import('@arco-design/web-vue')['Popconfirm'];
     AResult: typeof import('@arco-design/web-vue')['Result'];
     ARow: typeof import('@arco-design/web-vue')['Row'];
     ASelect: typeof import('@arco-design/web-vue')['Select'];
