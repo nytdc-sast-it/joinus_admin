@@ -18,7 +18,9 @@ export function getClubList() {
 }
 
 export function newClub(body: NewClub) {
-  return axios.post<ClubDTO>('/api/club/new', {
+  return axios.post<{
+    club: ClubDTO;
+  }>('/api/club/new', {
     ...body,
   });
 }

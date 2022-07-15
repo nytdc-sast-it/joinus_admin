@@ -108,10 +108,11 @@
       name: form.name,
     };
     try {
-      newClub(body);
-      Message.success(t('club.new.form.success'));
-    } catch (err) {
-      // ignore
+      newClub(body).then((res) => {
+        if (res.data.club.id > 0) {
+          Message.success(t('club.new.form.success'));
+        }
+      });
     } finally {
       done(true);
     }
