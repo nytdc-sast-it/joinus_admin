@@ -1,4 +1,5 @@
 import localeLogin from '@/views/login/locale/en-US';
+import localeInstall from '@/views/install/locale/en-US';
 
 import localeApplication from '@/views/dashboard/application/locale/en-US';
 
@@ -13,6 +14,7 @@ export default {
   'menu.faq': 'FAQ',
   'navbar.docs': 'Docs',
   'navbar.action.locale': 'Switch to English',
+  ...localeInstall,
   ...localeSettings,
   ...localeLogin,
   ...localeApplication,

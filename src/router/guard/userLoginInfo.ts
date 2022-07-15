@@ -26,6 +26,11 @@ export default function setupUserLoginInfoGuard(router: Router) {
         }
       }
     } else {
+      // 判断是否为安装页面
+      if (to.name === 'install') {
+        next();
+        return;
+      }
       if (to.name === 'login') {
         next();
         return;

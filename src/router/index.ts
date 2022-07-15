@@ -22,6 +22,14 @@ const router = createRouter({
         requiresAuth: false,
       },
     },
+    {
+      path: '/install',
+      name: 'install',
+      component: () => import('@/views/install/index.vue'),
+      meta: {
+        requiresAuth: false,
+      },
+    },
     ...(appRoutes as RouteRecordRaw[]),
     {
       path: '/:pathMatch(.*)*',
