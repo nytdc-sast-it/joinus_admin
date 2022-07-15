@@ -165,21 +165,19 @@
     ...basePagination,
   });
   const clubOptions = asyncComputed<SelectOptionData[]>(async () => {
-    if (userStore.admin) {
+    if (userStore.admin || !userStore.club) {
       const res = await getClubList();
       return res.data.list.map((item) => ({
         label: item.name,
         value: item.id,
       }));
     }
-    return userStore.club
-      ? [
-          {
-            label: userStore.club.name,
-            value: userStore.club.id,
-          },
-        ]
-      : [];
+    return [
+      {
+        label: userStore.club.name,
+        value: userStore.club.id,
+      },
+    ];
   });
   const download = () => {
     const params: CandidateQuery = {
