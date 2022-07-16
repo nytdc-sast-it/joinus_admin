@@ -28,6 +28,11 @@ axios.interceptors.request.use(
       }
       config.headers.Authorization = `Bearer ${token}`;
     }
+    // Add timestamp to each request
+    config.params = {
+      ...config.params,
+      _t: Date.parse(new Date().toString()) / 1000,
+    };
     return config;
   },
   (error) => {

@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export interface SiteInfo {
   installed: boolean;
-  shortName: string;
-  siteName: string;
+  shortName?: string;
+  siteName?: string;
 }
 
 export interface SiteInstallData {
@@ -14,11 +14,7 @@ export interface SiteInstallData {
 }
 
 export function getSiteInfo() {
-  return axios.get<SiteInfo>('/api/site/info', {
-    params: {
-      _t: Date.parse(new Date().toString()),
-    },
-  });
+  return axios.get<SiteInfo>('/api/site/info');
 }
 
 export function installSite(data: SiteInstallData) {
