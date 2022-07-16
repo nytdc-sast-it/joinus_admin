@@ -23,6 +23,16 @@ const ADMIN: AppRouteRecordRaw = {
         roles: ['admin'],
       },
     },
+    {
+      path: 'user',
+      name: 'user',
+      component: () => import('@/views/admin/user/index.vue'),
+      meta: {
+        locale: 'menu.admin.user',
+        requiresAuth: true,
+        roles: ['admin'],
+      },
+    },
   ],
 };
 

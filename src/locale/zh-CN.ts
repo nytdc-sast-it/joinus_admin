@@ -4,6 +4,7 @@ import localeInstall from '@/views/install/locale/zh-CN';
 import localeApplication from '@/views/dashboard/application/locale/zh-CN';
 
 import localeClub from '@/views/admin/club/locale/zh-CN';
+import localeUser from '@/views/admin/user/locale/zh-CN';
 
 import localeSettings from './zh-CN/settings';
 
@@ -19,4 +20,5 @@ export default {
   ...localeLogin,
   ...localeApplication,
   ...localeClub,
+  ...localeUser,
 };

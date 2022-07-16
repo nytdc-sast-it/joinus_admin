@@ -4,6 +4,7 @@ import localeInstall from '@/views/install/locale/en-US';
 import localeApplication from '@/views/dashboard/application/locale/en-US';
 
 import localeClub from '@/views/admin/club/locale/en-US';
+import localeUser from '@/views/admin/user/locale/en-US';
 
 import localeSettings from './en-US/settings';
 
@@ -19,4 +20,5 @@ export default {
   ...localeLogin,
   ...localeApplication,
   ...localeClub,
+  ...localeUser,
 };
