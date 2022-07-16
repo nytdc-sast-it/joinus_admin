@@ -10,7 +10,7 @@
           :style="{ margin: 0, fontSize: '18px' }"
           :heading="5"
         >
-          南京邮电大学通达学院社团招新系统
+          {{ siteName }}
         </a-typography-title>
         <icon-menu-fold
           v-if="appStore.device === 'mobile'"
@@ -116,17 +116,21 @@
 <script lang="ts" setup>
   import { computed, ref, inject } from 'vue';
   import { useDark, useToggle, useFullscreen } from '@vueuse/core';
-  import { useAppStore, useUserStore } from '@/store';
+  import { useAppStore, useSiteStore, useUserStore } from '@/store';
   import { LOCALE_OPTIONS } from '@/locale';
   import useLocale from '@/hooks/locale';
   import useUser from '@/hooks/user';
 
   const appStore = useAppStore();
   const userStore = useUserStore();
+  const siteStore = useSiteStore();
   const { logout } = useUser();
   const { changeLocale } = useLocale();
   const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
   const locales = [...LOCALE_OPTIONS];
+  const siteName = computed(() => {
+    return siteStore.siteName;
+  });
   const avatar = computed(() => {
     return userStore.avatar;
   });

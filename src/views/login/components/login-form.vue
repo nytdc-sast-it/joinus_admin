@@ -1,6 +1,8 @@
 <template>
   <div class="login-form-wrapper">
-    <div class="login-form-title">{{ $t('login.form.title') }}</div>
+    <div class="login-form-title"
+      >{{ $t('login.form.title') }}{{ shortName }}</div
+    >
     <div class="login-form-error-msg">{{ errorMessage }}</div>
     <a-form
       ref="loginForm"
@@ -65,15 +67,17 @@
   import { ValidatedError } from '@arco-design/web-vue/es/form/interface';
   import { useI18n } from 'vue-i18n';
   import { useStorage } from '@vueuse/core';
-  import { useUserStore } from '@/store';
+  import { useSiteStore, useUserStore } from '@/store';
   import useLoading from '@/hooks/loading';
   import type { LoginData } from '@/api/user';
+  import { computed } from '@vue/reactivity';
 
   const router = useRouter();
   const { t } = useI18n();
   const errorMessage = ref('');
   const { loading, setLoading } = useLoading();
   const userStore = useUserStore();
+  const siteStore = useSiteStore();
 
   const loginConfig = useStorage('login-config', {
     rememberPassword: true,
@@ -83,6 +87,9 @@
   const userInfo = reactive({
     username: loginConfig.value.username,
     password: loginConfig.value.password,
+  });
+  const shortName = computed(() => {
+    return siteStore.shortName;
   });
 
   const handleSubmit = async ({

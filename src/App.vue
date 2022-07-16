@@ -9,6 +9,8 @@
   import enUS from '@arco-design/web-vue/es/locale/lang/en-us';
   import zhCN from '@arco-design/web-vue/es/locale/lang/zh-cn';
   import useLocale from '@/hooks/locale';
+  import { useRouter } from 'vue-router';
+  import { useSiteStore } from './store';
 
   const { currentLocale } = useLocale();
   const locale = computed(() => {
@@ -20,5 +22,11 @@
       default:
         return enUS;
     }
+  });
+  const siteStore = useSiteStore();
+  const router = useRouter();
+  siteStore.info().catch(() => {
+    // 未安装
+    router.push({ name: 'install' });
   });
 </script>
