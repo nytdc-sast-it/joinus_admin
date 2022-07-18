@@ -31,6 +31,11 @@ export default function setupUserLoginInfoGuard(router: Router) {
         next();
         return;
       }
+      // 判断是否为加入页面
+      if (to.name === 'join') {
+        next();
+        return;
+      }
       if (to.name === 'login') {
         next();
         return;

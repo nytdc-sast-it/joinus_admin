@@ -12,7 +12,15 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: 'login',
+      redirect: 'join',
+    },
+    {
+      path: '/join',
+      name: 'join',
+      component: () => import('@/views/join/index.vue'),
+      meta: {
+        requiresAuth: false,
+      },
     },
     {
       path: '/login',

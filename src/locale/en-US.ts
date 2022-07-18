@@ -3,6 +3,7 @@ import localeInstall from '@/views/install/locale/en-US';
 
 import localeApplication from '@/views/dashboard/application/locale/en-US';
 
+import localeJoin from '@/views/join/locale/en-US';
 import localeClub from '@/views/admin/club/locale/en-US';
 import localeUser from '@/views/admin/user/locale/en-US';
 
@@ -15,6 +16,7 @@ export default {
   'menu.faq': 'FAQ',
   'navbar.docs': 'Docs',
   'navbar.action.locale': 'Switch to English',
+  ...localeJoin,
   ...localeInstall,
   ...localeSettings,
   ...localeLogin,

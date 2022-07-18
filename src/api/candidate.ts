@@ -21,6 +21,19 @@ export interface CandidateQuery {
   club: string | undefined;
 }
 
+export interface NewCandidateParams {
+  name: string;
+  studentId: string;
+  phone: string;
+  qq: string;
+  major: string;
+  counselor: string;
+  club: number;
+  choice1: number;
+  choice2: number;
+  reason: string;
+}
+
 export interface CandidateParams extends Partial<CandidateQuery> {
   current: number;
   pageSize: number;
@@ -48,4 +61,8 @@ export function exportCandidateList(params: CandidateQuery) {
     },
     responseType: 'blob',
   });
+}
+
+export function newCandidate(params: NewCandidateParams) {
+  return axios.post<null>('/api/candidate/join', params);
 }
