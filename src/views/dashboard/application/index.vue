@@ -22,13 +22,23 @@
               </a-col>
               <!-- 社团 -->
               <a-col :span="8">
-                <a-form-item
-                  field="contentType"
-                  :label="$t('application.form.club')"
-                >
+                <a-form-item field="club" :label="$t('application.form.club')">
                   <a-select
                     v-model="formModel.club"
                     :options="clubOptions"
+                    :placeholder="$t('application.form.selectDefault')"
+                  />
+                </a-form-item>
+              </a-col>
+              <!-- 部门 -->
+              <a-col :span="8">
+                <a-form-item
+                  field="department"
+                  :label="$t('application.form.department')"
+                >
+                  <a-select
+                    v-model="formModel.department"
+                    :options="departmentOptions"
                     :placeholder="$t('application.form.selectDefault')"
                   />
                 </a-form-item>
@@ -132,7 +142,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { ref, reactive } from 'vue';
+  import { ref, reactive, computed } from 'vue';
   import useLoading from '@/hooks/loading';
   import { Pagination } from '@/types/global';
   import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface';
@@ -151,6 +161,7 @@
     return {
       name: '',
       club: undefined,
+      department: undefined,
     };
   };
   const { loading, setLoading } = useLoading(true);
@@ -176,6 +187,23 @@
       {
         label: userStore.club.name,
         value: userStore.club.id,
+      },
+    ];
+  });
+  const departmentOptions = computed<SelectOptionData[]>(() => {
+    if (!formModel.value.club) {
+      return [];
+    }
+    // 显示全部部门
+    if (userStore.admin || !userStore.department) {
+      return clubOptions.value.filter(
+        (item) => item.value === formModel.value.club
+      )[0].children;
+    }
+    return [
+      {
+        label: userStore.department.name,
+        value: userStore.department.id,
       },
     ];
   });

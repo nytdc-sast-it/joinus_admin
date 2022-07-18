@@ -15,6 +15,7 @@ const useUserStore = defineStore('user', {
     role: '',
     admin: false,
     club: undefined,
+    department: undefined,
   }),
 
   getters: {

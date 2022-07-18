@@ -1,4 +1,4 @@
-import { ClubDTO } from '@/api/club';
+import { ClubDTO, DepartmentDTO } from '@/api/club';
 
 export type RoleType = '' | '*' | 'admin' | 'user';
 export interface UserState {
@@ -8,4 +8,5 @@ export interface UserState {
   role: RoleType;
   admin: boolean;
   club: ClubDTO | undefined;
+  department: DepartmentDTO | undefined;
 }

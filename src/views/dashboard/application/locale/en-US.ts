@@ -3,6 +3,7 @@ export default {
   'application.form.name': 'Name',
   'application.form.name.placeholder': 'Please enter Name',
   'application.form.club': 'Club',
+  'application.form.department': 'Department',
   'application.form.search': 'Search',
   'application.form.reset': 'Reset',
   'application.form.selectDefault': 'All',

@@ -3,6 +3,7 @@ export default {
   'application.form.name': '姓名',
   'application.form.name.placeholder': '请输入姓名',
   'application.form.club': '社团',
+  'application.form.department': '部门',
   'application.form.search': '查询',
   'application.form.reset': '重置',
   'application.form.selectDefault': '全部',
