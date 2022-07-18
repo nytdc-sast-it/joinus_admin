@@ -14,6 +14,7 @@ export interface UserDTO {
   id: number;
   username: string;
   club: string;
+  department: string;
   admin: boolean;
 }
 
@@ -21,6 +22,7 @@ export interface NewUser {
   username: string;
   password: string;
   clubId?: number;
+  departmentId?: number;
   admin: boolean;
 }
 

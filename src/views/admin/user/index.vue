@@ -40,6 +40,16 @@
                       :placeholder="$t('application.form.selectDefault')"
                     />
                   </a-form-item>
+                  <a-form-item
+                    field="department"
+                    :label="$t('user.new.form.department')"
+                  >
+                    <a-select
+                      v-model="newUserForm.department"
+                      :options="departmentOptions"
+                      :placeholder="$t('application.form.selectDefault')"
+                    />
+                  </a-form-item>
                   <a-form-item field="admin" :label="$t('user.new.form.admin')">
                     <a-checkbox v-model="newUserForm.admin" />
                   </a-form-item>
@@ -62,6 +72,10 @@
             data-index="username"
           />
           <a-table-column :title="$t('user.columns.club')" data-index="club" />
+          <a-table-column
+            :title="$t('user.columns.department')"
+            data-index="department"
+          />
           <a-table-column
             :title="$t('user.columns.admin')"
             data-index="admin"
@@ -92,7 +106,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { reactive, ref } from 'vue';
+  import { computed, reactive, ref } from 'vue';
   import useLoading from '@/hooks/loading';
   import { getClubList } from '@/api/club';
   import { Message, SelectOptionData } from '@arco-design/web-vue';
@@ -117,28 +131,35 @@
     username: '',
     password: '',
     club: undefined,
+    department: undefined,
     admin: false,
   });
   const clubOptions = asyncComputed<SelectOptionData[]>(async () => {
-    if (userStore.admin || !userStore.club) {
-      const res = await getClubList();
-      return res.data.list.map((item) => ({
-        label: item.name,
-        value: item.id,
-      }));
+    const res = await getClubList();
+    return res.data.list.map((item) => ({
+      label: item.name,
+      value: item.id,
+      children: item.departments.map((department) => ({
+        label: department.name,
+        value: department.id,
+      })),
+    }));
+  });
+  const departmentOptions = computed<SelectOptionData[]>(() => {
+    if (!newUserForm.club) {
+      return [];
     }
-    return [
-      {
-        label: userStore.club.name,
-        value: userStore.club.id,
-      },
-    ];
+    return (
+      clubOptions.value.filter((it) => it.value === newUserForm.club)[0]
+        ?.children ?? []
+    );
   });
   const renderData = ref<
     {
       id: number;
       username: string;
       club: string;
+      department: string;
       admin: boolean;
     }[]
   >([]);
@@ -172,6 +193,7 @@
       username: newUserForm.username,
       password: newUserForm.password,
       clubId: newUserForm.club,
+      departmentId: newUserForm.department,
       admin: newUserForm.admin,
     };
     try {

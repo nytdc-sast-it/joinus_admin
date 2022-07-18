@@ -5,6 +5,7 @@ export default {
   'user.columns.id': 'ID',
   'user.columns.username': 'Username',
   'user.columns.club': 'Club',
+  'user.columns.department': 'Department',
   'user.columns.admin': 'Admin',
   'user.columns.operations': 'Operations',
   'user.columns.operations.remove': 'Remove',
@@ -15,6 +16,7 @@ export default {
   'user.new.form.username': 'Username',
   'user.new.form.password': 'Password',
   'user.new.form.club': 'Club',
+  'user.new.form.department': 'Department',
   'user.new.form.admin': 'Admin',
   'user.new.form.success': 'Successfully added',
 };
