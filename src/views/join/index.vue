@@ -14,19 +14,8 @@
 
 <script lang="ts" setup>
   import Footer from '@/components/footer/index.vue';
-  import { useUserStore } from '@/store';
-  import { ref } from 'vue';
-  import { useRouter } from 'vue-router';
   import JoinBanner from './components/banner.vue';
   import JoinForm from './components/join-form.vue';
-
-  // Check if the user is logged in
-  const userStore = useUserStore();
-  const isLoggedIn = ref(userStore.id);
-  const router = useRouter();
-  if (isLoggedIn.value) {
-    router.push({ name: 'Application' });
-  }
 </script>
 
 <style lang="less" scoped>
