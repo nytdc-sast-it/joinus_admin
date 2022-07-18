@@ -12,7 +12,9 @@
       <!-- 姓名 -->
       <a-form-item
         field="name"
-        :rules="[{ required: true, message: $t('join.form.name.errMsg') }]"
+        :rules="[
+          { required: true, message: $t('join.form.name.errMsg.notBlank') },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -24,7 +26,16 @@
       <!-- 学号 -->
       <a-form-item
         field="studentId"
-        :rules="[{ required: true, message: $t('join.form.studentId.errMsg') }]"
+        :rules="[
+          {
+            match: /^[0-9]{8}$/,
+            message: $t('join.form.studentId.errMsg.length'),
+          },
+          {
+            required: true,
+            message: $t('join.form.studentId.errMsg.notBlank'),
+          },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -36,7 +47,13 @@
       <!-- 手机号 -->
       <a-form-item
         field="phone"
-        :rules="[{ required: true, message: $t('join.form.phone.errMsg') }]"
+        :rules="[
+          { required: true, message: $t('join.form.phone.errMsg.notBlank') },
+          {
+            match: /^1[3456789]\d{9}$/,
+            message: $t('join.form.phone.errMsg.format'),
+          },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -48,7 +65,13 @@
       <!-- QQ -->
       <a-form-item
         field="qq"
-        :rules="[{ required: true, message: $t('join.form.qq.errMsg') }]"
+        :rules="[
+          { required: true, message: $t('join.form.qq.errMsg.notBlank') },
+          {
+            match: /^[1-9][0-9]{5,15}$/,
+            message: $t('join.form.qq.errMsg.format'),
+          },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -60,7 +83,9 @@
       <!-- 专业 -->
       <a-form-item
         field="major"
-        :rules="[{ required: true, message: $t('join.form.major.errMsg') }]"
+        :rules="[
+          { required: true, message: $t('join.form.major.errMsg.notBlank') },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -72,7 +97,12 @@
       <!-- 辅导员 -->
       <a-form-item
         field="counselor"
-        :rules="[{ required: true, message: $t('join.form.counselor.errMsg') }]"
+        :rules="[
+          {
+            required: true,
+            message: $t('join.form.counselor.errMsg.notBlank'),
+          },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -84,7 +114,9 @@
       <!-- 社团 -->
       <a-form-item
         field="club"
-        :rules="[{ required: true, message: $t('join.form.club.errMsg') }]"
+        :rules="[
+          { required: true, message: $t('join.form.club.errMsg.notBlank') },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -97,7 +129,9 @@
       <!-- 第一志愿 -->
       <a-form-item
         field="choice1"
-        :rules="[{ required: true, message: $t('join.form.choice1.errMsg') }]"
+        :rules="[
+          { required: true, message: $t('join.form.choice1.errMsg.notBlank') },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -110,7 +144,9 @@
       <!-- 第二志愿 -->
       <a-form-item
         field="choice2"
-        :rules="[{ required: true, message: $t('join.form.choice2.errMsg') }]"
+        :rules="[
+          { required: true, message: $t('join.form.choice2.errMsg.notBlank') },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
@@ -123,7 +159,9 @@
       <!-- 加入原因 -->
       <a-form-item
         field="reason"
-        :rules="[{ required: true, message: $t('join.form.reason.errMsg') }]"
+        :rules="[
+          { required: true, message: $t('join.form.reason.errMsg.notBlank') },
+        ]"
         :validate-trigger="['change', 'blur']"
         hide-label
       >
