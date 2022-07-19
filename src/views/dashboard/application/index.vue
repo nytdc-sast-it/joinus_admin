@@ -181,6 +181,10 @@
       return res.data.list.map((item) => ({
         label: item.name,
         value: item.id,
+        children: item.departments.map((department) => ({
+          label: department.name,
+          value: department.id,
+        })),
       }));
     }
     return [
