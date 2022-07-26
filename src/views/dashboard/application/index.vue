@@ -191,6 +191,10 @@
       {
         label: userStore.club.name,
         value: userStore.club.id,
+        children: userStore.club.departments.map((department) => ({
+          label: department.name,
+          value: department.id,
+        })),
       },
     ];
   });
