@@ -21,3 +21,7 @@ export function getSiteInfo() {
 export function installSite(data: SiteInstallData) {
   return axios.post<SiteInfo>('/api/site/install', data);
 }
+
+export function switchApiStatus() {
+  return axios.post<SiteInfo>('/api/site/switch');
+}

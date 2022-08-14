@@ -21,6 +21,10 @@
     </div>
     <ul class="right-side">
       <li>
+        <div v-if="userStore.admin">
+          接口已关闭
+          <a-switch :model-value="apiClosed" @change="onSwitchApiStatus" />
+        </div>
         <a-tooltip :content="$t('settings.language')">
           <a-button
             class="nav-btn"
@@ -120,6 +124,8 @@
   import { LOCALE_OPTIONS } from '@/locale';
   import useLocale from '@/hooks/locale';
   import useUser from '@/hooks/user';
+  import { switchApiStatus } from '@/api/site';
+  import { Message } from '@arco-design/web-vue';
 
   const appStore = useAppStore();
   const userStore = useUserStore();
@@ -137,6 +143,13 @@
   const username = computed(() => {
     return userStore.username;
   });
+  const apiClosed = computed(() => {
+    return siteStore.apiClosed;
+  });
+  const onSwitchApiStatus = () => {
+    switchApiStatus();
+    Message.info('已操作，请刷新页面！');
+  };
   const theme = computed(() => {
     return appStore.theme;
   });
