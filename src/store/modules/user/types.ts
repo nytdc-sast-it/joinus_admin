@@ -9,4 +9,5 @@ export interface UserState {
   admin: boolean;
   club: ClubDTO | undefined;
   department: DepartmentDTO | undefined;
+  pwdNeedModified?: boolean;
 }
