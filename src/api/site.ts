@@ -4,6 +4,7 @@ export interface SiteInfo {
   installed: boolean;
   shortName?: string;
   siteName?: string;
+  apiClosed?: boolean;
 }
 
 export interface SiteInstallData {

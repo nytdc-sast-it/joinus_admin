@@ -3,7 +3,8 @@
     <JoinBanner />
     <div class="content">
       <div class="content-inner">
-        <JoinForm />
+        <JoinForm v-if="!apiCposed" />
+        <div v-else>不在招新时间范围内！</div>
       </div>
       <div class="footer">
         <Footer />
@@ -14,8 +15,15 @@
 
 <script lang="ts" setup>
   import Footer from '@/components/footer/index.vue';
+  import { useSiteStore } from '@/store';
+  import { computed } from 'vue';
   import JoinBanner from './components/banner.vue';
   import JoinForm from './components/join-form.vue';
+
+  const siteStore = useSiteStore();
+  const apiCposed = computed(() => {
+    return siteStore.apiClosed;
+  });
 </script>
 
 <style lang="less" scoped>

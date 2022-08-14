@@ -7,6 +7,7 @@ const useSiteStore = defineStore('site', {
     installed: undefined,
     shortName: undefined,
     siteName: undefined,
+    apiClosed: undefined,
   }),
 
   getters: {
