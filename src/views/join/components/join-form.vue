@@ -124,6 +124,7 @@
           v-model="joinInfo.club"
           :options="clubOptions"
           :placeholder="$t('join.form.club.placeholder')"
+          @change="handleClubChange"
         />
       </a-form-item>
       <!-- 第一志愿 -->
@@ -205,6 +206,10 @@
     choice2: undefined,
     reason: '',
   });
+  const handleClubChange = () => {
+    joinInfo.choice1 = undefined;
+    joinInfo.choice2 = undefined;
+  };
   const clubOptions = asyncComputed<SelectOptionData[]>(async () => {
     const clubs = await getClubList();
     return clubs.data.list.map((item) => ({
