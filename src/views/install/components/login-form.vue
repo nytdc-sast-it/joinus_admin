@@ -23,7 +23,7 @@
         />
       </a-form-item>
       <a-form-item
-        field="admin"
+        field="shortName"
         :rules="[
           { required: true, message: $t('install.form.shortname.errMsg') },
         ]"
@@ -102,7 +102,7 @@
       try {
         await installSite(values as SiteInstallData);
         router.push({
-          name: 'Login',
+          name: 'login',
         });
         Message.success(t('install.success'));
       } catch (err) {
