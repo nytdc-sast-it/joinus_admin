@@ -166,6 +166,7 @@
   const remove = async (id: number) => {
     try {
       await deleteUser(id);
+      fetchData();
       Message.success(t('user.operation.remove.success'));
     } finally {
       await fetchData();
@@ -199,6 +200,7 @@
     try {
       newUser(body).then((res) => {
         if (res.data.user.id > 0) {
+          fetchData();
           Message.success(t('user.new.form.success'));
         }
       });

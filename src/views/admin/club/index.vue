@@ -176,6 +176,7 @@
     try {
       newClub(body).then((res) => {
         if (res.data.club.id > 0) {
+          fetchData();
           Message.success(t('club.new.form.success'));
         }
       });
@@ -195,6 +196,7 @@
     try {
       newDepartment(body).then((res) => {
         if (res.data.department.id > 0) {
+          fetchData();
           Message.success(t('department.new.form.success'));
         }
       });
