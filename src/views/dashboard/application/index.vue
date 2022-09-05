@@ -154,8 +154,9 @@
     exportCandidateList,
   } from '@/api/candidate';
   import { getClubList } from '@/api/club';
-  import { useUserStore } from '@/store';
+  import { useUserStore, useSiteStore } from '@/store';
   import { asyncComputed } from '@vueuse/core';
+  import { Message } from '@arco-design/web-vue';
 
   const generateFormModel = () => {
     return {
@@ -168,6 +169,7 @@
   const renderData = ref<CandidateRecord[]>([]);
   const formModel = ref(generateFormModel());
   const userStore = useUserStore();
+  const siteStore = useSiteStore();
   const basePagination: Pagination = {
     current: 1,
     pageSize: 20,
@@ -216,6 +218,10 @@
     ];
   });
   const download = () => {
+    if (!siteStore.apiClosed) {
+      Message.info('在招新时间段内无法下载申请表');
+      return;
+    }
     const params: CandidateQuery = {
       ...formModel.value,
     };
